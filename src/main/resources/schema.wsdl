@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://localhost/timezone" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost" targetNamespace="http://localhost">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://localhost/timezone" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://localhost/timezone">
+
+    <xs:element name="getTimeZoneRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="number" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getTimeZoneResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="time" type="tns:timezone"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="timezone">
+        <xs:sequence>
+            <xs:element name="time" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getTimeZoneRequest">
+    <wsdl:part element="sch:getTimeZoneRequest" name="getTimeZoneRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTimeZoneResponse">
+    <wsdl:part element="sch:getTimeZoneResponse" name="getTimeZoneResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TimeZonePort">
+    <wsdl:operation name="getTimeZone">
+      <wsdl:input message="tns:getTimeZoneRequest" name="getTimeZoneRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getTimeZoneResponse" name="getTimeZoneResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TimeZonePortSoap11" type="tns:TimeZonePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getTimeZone">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getTimeZoneRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTimeZoneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TimeZonePortService">
+    <wsdl:port binding="tns:TimeZonePortSoap11" name="TimeZonePortSoap11">
+      <soap:address location="http://localhost:8080/timezone"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

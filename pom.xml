@@ -82,11 +82,10 @@
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>timezone</generatePackage>
                     <forceRegenerate>true</forceRegenerate>
-                    <schemas>
-                        <schema>
-                            <url>http://localhost:8080/timezone/timezone.wsdl</url>
-                        </schema>
-                    </schemas>
+                    <schemaDirectory>src/main/resources</schemaDirectory>
+                    <schemaIncludes>
+                        <include>schema.wsdl</include>
+                    </schemaIncludes>
                 </configuration>
             </plugin>
         </plugins>
